@@ -1,6 +1,6 @@
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-stable, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     #cli
     nano
     git
@@ -13,14 +13,18 @@
     iputils
     networkmanagerapplet
 
-    #img
-    ffmpeg
-
     #other
     qt6.qtsvg
     qt6.qtvirtualkeyboard
     qt6.qtmultimedia
-  ];
+  ])
+
+  ++
+
+  (with pkgs-stable; [
+    #imgs
+    ffmpeg 
+  ]);
 
   services.flatpak.enable = true;
 

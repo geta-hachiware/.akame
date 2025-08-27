@@ -12,8 +12,6 @@
       rb = "nh os switch ${flakeDir}";
       upd = "nh os switch --update ${flakeDir}";
 
-      hms = "nh home switch ${flakeDir}";
-
       v = "nvim";
       ff = "fastfetch";
       sy = "sudo yazi";

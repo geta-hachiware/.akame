@@ -47,11 +47,11 @@
       },
       "locked": {
         "dir": "pkgs/firefox-addons",
-        "lastModified": 1756181002,
-        "narHash": "sha256-bPChgpfVqZQxkX0sqFVypO4CFu+swVqqgWySHWK+1wc=",
+        "lastModified": 1756267413,
+        "narHash": "sha256-6U8w5ekYCkSl+abrWoZbMRIJh38pjO2zCQsLxhh9ea4=",
         "owner": "rycee",
         "repo": "nur-expressions",
-        "rev": "3cb5445c6a575cf7ece61678449bee89eec864d7",
+        "rev": "cfca2aacacfd57476bd4137033e1b181ed239dff",
         "type": "gitlab"
       },
       "original": {
@@ -197,16 +197,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1755928099,
-        "narHash": "sha256-OILVkfhRCm8u18IZ2DKR8gz8CVZM2ZcJmQBXmjFLIfk=",
+        "lastModified": 1756261190,
+        "narHash": "sha256-eiy0klFK5EVJLNilutR7grsZN/7Itj9DyD75eyOf83k=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "4a44fb9f7555da362af9d499817084f4288a957f",
+        "rev": "77f348da3176dc68b20a73dab94852a417daf361",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-25.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -267,11 +266,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1756196823,
-        "narHash": "sha256-N6NtHwZ+RvXFj2AQwP0u4SckqObsP8cY6lZvOQISsKc=",
+        "lastModified": 1756257722,
+        "narHash": "sha256-VqQpU4H6gTSFvhz1CsvmrdYH4JOefSKuxp9xVDUF8gc=",
         "owner": "kaylorben",
         "repo": "nixcord",
-        "rev": "53b8504b8c35163849de38d2fdf5bef1bc42650c",
+        "rev": "7fedaf5f9c2506b2b810c92732ba8103e451944c",
         "type": "github"
       },
       "original": {
@@ -343,6 +342,22 @@
     },
     "nixpkgs-stable": {
       "locked": {
+        "lastModified": 1756217674,
+        "narHash": "sha256-TH1SfSP523QI7kcPiNtMAEuwZR3Jdz0MCDXPs7TS8uo=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4e7667a90c167f7a81d906e5a75cba4ad8bee620",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable_2": {
+      "locked": {
         "lastModified": 1751274312,
         "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
         "owner": "nixos",
@@ -353,22 +368,6 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-24.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1756125398,
-        "narHash": "sha256-XexyKZpf46cMiO5Vbj+dWSAXOnr285GHsMch8FBoHbc=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "3b9f00d7a7bf68acd4c4abb9d43695afb04e03a5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -391,16 +390,16 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1755922037,
-        "narHash": "sha256-wY1+2JPH0ZZC4BQefoZw/k+3+DowFyfOxv17CN/idKs=",
+        "lastModified": 1756125398,
+        "narHash": "sha256-XexyKZpf46cMiO5Vbj+dWSAXOnr285GHsMch8FBoHbc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "b1b3291469652d5a2edb0becc4ef0246fff97a7c",
+        "rev": "3b9f00d7a7bf68acd4c4abb9d43695afb04e03a5",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-25.05",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -457,7 +456,7 @@
       "inputs": {
         "flake-parts": "flake-parts_2",
         "nixpkgs": "nixpkgs_4",
-        "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-stable": "nixpkgs-stable_2",
         "nixvim": "nixvim_2"
       },
       "locked": {
@@ -527,7 +526,7 @@
         "nix-colors": "nix-colors",
         "nixcord": "nixcord",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nixvim": "nixvim",
         "silentSDDM": "silentSDDM",
         "spicetify-nix": "spicetify-nix",

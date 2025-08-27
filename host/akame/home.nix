@@ -1,10 +1,12 @@
-{ config, pkgs, username, lib, inputs, system, theme, ... }:
+{ config, pkgs, pkgs-stable, username, lib, inputs, system, theme, ... }:
 
 { 
   colorScheme = inputs.nix-colors.colorSchemes."${theme}";
 
   imports = [
     inputs.nix-colors.homeManagerModules.default
+    inputs.nixcord.homeModules.nixcord
+    inputs.textfox.homeManagerModules.default
     ../../modules/home-manager/shell/zsh.nix
     ../../modules/home-manager/desktop/hyprland/default.nix
     ../../modules/home-manager/desktop/waybar/default.nix
@@ -18,9 +20,8 @@
     homeDirectory = "/home/${username}";
     stateVersion = "25.05"; # Please read the comment before changing.
     
-    packages = with pkgs; [
+    packages = (with pkgs; [
       inputs.nixvim.packages.${system}.default
-
       #cli
       cmatrix
       btop
@@ -70,7 +71,13 @@
       nwg-look
       xdg-user-dirs
       jq
-    ];
+    ]) 
+
+    ++
+
+    (with pkgs-stable; [
+
+    ]);
 
     file = {
       ".config/wal/templates".source = ../../modules/home-manager/pywal/template;

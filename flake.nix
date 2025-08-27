@@ -65,16 +65,12 @@
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
         inherit system;
-        overlays = overlays;
         config.allowUnfree = true;
       };
       pkgs-stable = import nixpkgs-stable { 
         inherit system;
         config.allowUnfree = true;
       };
-      overlays = [
-        (import ./pkgs)
-      ];
     in {
     nixosConfigurations = {
       nixos = lib.nixosSystem {
@@ -85,24 +81,20 @@
         modules = with inputs; [
           ./host/akame/configuration.nix
           spicetify-nix.nixosModules.default
+          home-manager.nixosModules.home-manager
+          { 
+            home-manager = {
+              users.${username} = import ./host/akame/home.nix;
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = {
+                inherit username inputs theme system pkgs-stable;
+                inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
+              };
+            };
+          }
          ];
       };
-    };
-    homeConfigurations = {
-      ${username} = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit pkgs-stable;
-          inherit username system theme inputs;
-          inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
-        };
-        modules = with inputs; [
-          ./host/akame/home.nix
-          nixcord.homeModules.nixcord
-          textfox.homeManagerModules.default
-          nix-colors.homeManagerModules.default
-        ];
-      };
-    };
+    }; 
   };
 }

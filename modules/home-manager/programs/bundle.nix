@@ -2,7 +2,6 @@
   imports = [
     ./firefox.nix
     ./nixcord.nix
-    ./mpv.nix
     ./games.nix
     ./alacritty.nix
     ./vscode.nix
