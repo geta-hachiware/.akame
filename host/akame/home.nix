@@ -41,6 +41,8 @@
       python3
       blender
 
+      #editor
+
       #screenshot
       slurp
       grimblast

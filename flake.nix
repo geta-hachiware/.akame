@@ -2,11 +2,11 @@
   description = "akame system flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url =  "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05"; 
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -48,7 +48,7 @@
     { 
       self,
       nixpkgs,
-      nixpkgs-unstable,
+      nixpkgs-stable,
       home-manager,
       nixvim,
       nixcord,
@@ -68,7 +68,7 @@
         overlays = overlays;
         config.allowUnfree = true;
       };
-      pkgs-unstable = import nixpkgs-unstable { 
+      pkgs-stable = import nixpkgs-stable { 
         inherit system;
         config.allowUnfree = true;
       };
@@ -79,7 +79,7 @@
     nixosConfigurations = {
       nixos = lib.nixosSystem {
         specialArgs = {
-          inherit pkgs-unstable;
+          inherit pkgs-stable;
           inherit username inputs system;
         };
         modules = with inputs; [
@@ -92,7 +92,7 @@
       ${username} = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
-          inherit pkgs-unstable;
+          inherit pkgs-stable;
           inherit username system theme inputs;
           inherit (inputs.nix-colors.lib-contrib {inherit pkgs;}) gtkThemeFromScheme;
         };

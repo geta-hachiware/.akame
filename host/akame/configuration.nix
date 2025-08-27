@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      <home-manager/nixos>
       ../../modules/nixos/programs/bundle.nix
       ../../modules/nixos/bundle.nix
     ];
@@ -126,7 +127,7 @@
       TimeoutStopSec = 10;
     };
   };
-
+  
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
