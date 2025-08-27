@@ -53,9 +53,6 @@
       #office
       libreoffice-qt6-fresh
 
-      #drawing
-      krita
-
       #clipboard
       cliphist
       wl-clipboard
@@ -76,7 +73,8 @@
     ++
 
     (with pkgs-stable; [
-
+      #drawing
+      krita
     ]);
 
     file = {
@@ -104,7 +102,6 @@
     };
   };
 
-  nixpkgs.config.allowUnfree = true;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

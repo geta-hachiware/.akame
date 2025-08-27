@@ -4,7 +4,7 @@
     ./nixcord.nix
     ./games.nix
     ./alacritty.nix
-    ./vscode.nix
+    #./vscode.nix
     ./xdg.nix
     ./git.nix
     ./gtk-qt.nix

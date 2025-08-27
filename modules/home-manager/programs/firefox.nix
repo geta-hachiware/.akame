@@ -11,7 +11,7 @@
     hash = "sha256-gHFA/1PeQ0iNAcjATGwgJOqRlR9YmxD/RJKkYN36QYA="; 
   };
 in {
-    #stylix.targets.firefox.profileNames = [username];
+  #stylix.targets.firefox.profileNames = [username];
     programs.firefox = {
     enable = true;
     nativeMessagingHosts = [pkgs.tridactyl-native];
@@ -210,7 +210,7 @@ in {
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = ["@no"];
             };
-            "YouTube" = {
+            "youtube" = {
               icon = "https://youtube.com/favicon.ico";
               updateInterval = 24 * 60 * 60 * 1000;
               urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
@@ -226,7 +226,7 @@ in {
               urls = [{template = "https://www.hentaihaven.com/search?q={searchTerms}";}];
               definedAliases = ["@hh"]; 
             };
-            "Google".metaData.alias = "g";
+            "google".metaData.alias = "g";
           };
         };
         extraConfig = ''
@@ -240,19 +240,20 @@ in {
   };
   textfox = {
       enable = true;
-      profile = username;
+      profile = "${username}";
       config = {
       # Optional config
+        displayWindowControls = true;
         displayNavButtons = true;
         displayUrlbarIcons = true;
         displaySidebarTools = false;
         displayTitles = true;
-        tabs.vertical = {
-          margin = "1.0rem";
-        };
         font = { 
-          family = "Lekton";
+          family = "FiraCode";
           size = "15px";
+        };
+        sidebery = {
+          margin = "1.0rem";
         };
       };
   };
