@@ -12,6 +12,9 @@
     #imgs
     ffmpeg
 
+    #editor
+    shotcut
+
     #network
     networkmanagerapplet
   ])

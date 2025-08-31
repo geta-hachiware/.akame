@@ -17,5 +17,6 @@
     ./btop.nix
     ./cava.nix
     ./obs-studio.nix
+    ./mpv.nix
   ];
 }

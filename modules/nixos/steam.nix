@@ -19,6 +19,7 @@
     bottles
     heroic
     steam-run
+    wine
     wineWowPackages.staging
   ];
 

@@ -64,13 +64,16 @@
 
       lib = nixpkgs.lib;
       pkgs = import nixpkgs {
-        inherit system;
+        inherit system overlays;
         config.allowUnfree = true;
       };
       pkgs-stable = import nixpkgs-stable { 
         inherit system;
         config.allowUnfree = true;
       };
+      overlays = [
+        (import ./pkgs)
+      ];
     in {
     nixosConfigurations = {
       nixos = lib.nixosSystem {
