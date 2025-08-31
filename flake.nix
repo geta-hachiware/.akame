@@ -63,11 +63,8 @@
       theme = "black-metal-burzum";
 
       lib = nixpkgs.lib;
-      overlays = [
-        (import ./pkgs)
-      ];
       pkgs = import nixpkgs {
-        inherit system overlays;
+        inherit system;
         config.allowUnfree = true;
       };
       pkgs-stable = import nixpkgs-stable { 
