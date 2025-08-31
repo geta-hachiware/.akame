@@ -1,0 +1,240 @@
+{
+  inputs,
+  pkgs,
+  username,
+  ...
+}: let
+  betterfox = pkgs.fetchFromGitHub {
+    owner = "yokoffing";
+    repo = "Betterfox";
+    rev = "2d81cd4094a665be94cfc309157a8a72a8d0b262";
+    hash = "sha256-3xvZAMPdGfj8w2AaepWW5xAX05Ry+pN8peLMORKNTIc="; 
+  };
+in {
+    programs.firefox = {
+    enable = true;
+    nativeMessagingHosts = [pkgs.tridactyl-native];
+    profiles = {
+      "${username}" = {
+        id = 0;
+        isDefault = true;
+        name = username;
+        extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+          refined-github
+          sponsorblock
+          mal-sync
+          to-google-translate
+          foxyproxy-standard
+          istilldontcareaboutcookies
+          localcdn
+          clearurls
+          privacy-badger
+          don-t-fuck-with-paste
+          skip-redirect
+          search-by-image
+          ublock-origin
+          firefox-color
+          inputs.firefox-addons.packages.${pkgs.system}."10ten-ja-reader"
+        ];
+        settings = {
+          # GENERAL
+          "browser.display.use_document_fonts" = 0;
+          "browser.ctrlTab.sortByRecentlyUsed" = false;
+          "browser.theme.toolbar-theme" = 0;
+          "general.autoScroll" = true;
+          "extensions.autoDisableScopes" = 0;
+          "extensions.allowPrivateBrowsingByDefault" = true;
+          "browser.toolbars.bookmarks.visibility" = "never";
+
+          # TELEMETRY
+          "browser.ping-centre.telemetry" = false;
+          "devtools.onboarding.telemetry.logged" = false;
+          "extensions.webcompat-reporter.enabled" = false;
+          "browser.urlbar.eventTelemetry.enabled" = false;
+
+          # PERFS
+          "media.rdd-ffmpeg.enabled" = true;
+          "widget.dmabuf.force-enabled" = true;
+          "media.ffvpx.enabled" = false;
+          "media.rdd-vpx.enabled" = false;
+
+          # TWEAKS
+          "browser.cache.memory.capacity" = -1;
+          "middlemouse.paste" = false;
+          "network.dns.echconfig.enabled" = true;
+          "browser.tabs.loadBookmarksInTabs" = true;
+          "browser.urlbar.maxRichResults" = true;
+
+          # PRIVACY
+          "privacy.donottrackheader.enabled" = true;
+          "privacy.trackingprotection.enabled" = true;
+          "privacy.trackingprotection.socialtracking.enabled" = true;
+          "app.normandy.enabled" = false;
+        };
+
+        bookmarks = {
+          force = true;
+          settings = [
+            {
+              name = "nix";
+              toolbar = false;
+              bookmarks = [
+                {
+                  name = "Nix Package";
+                  keyword = "np";
+                  url = "https://search.nixos.org/packages?channel=unstable";
+                }
+                {
+                  name = "Nix Options";
+                  keyword = "no";
+                  url = "https://search.nixos.org/options?channel=unstable";
+                }
+              ];
+            }
+            {
+              name = "shiki";
+              toolbar = false;
+              bookmarks = [
+                {
+                  name = "ProtonDB";
+                  keyword = "db";
+                  url = "https://protondb.com";
+                }
+                {
+                  name = "Anilist";
+                  keyword = "an";
+                  url = "https://anilist.co";
+                }
+                {
+                  name = "ChatGPT";
+                  keyword = "ch";
+                  url = "https://chat.openai.com";
+                }
+                {
+                  name = "GitHub";
+                  keyword = "gh";
+                  url = "https://github.com";
+                }
+                {
+                  name = "Discord";
+                  keyword = "di";
+                  url = "https://discord.com/channels/@me";
+                }
+                {
+                  name = "Reddit";
+                  keyword = "re";
+                  url = "https://reddit.com";
+                }
+                {
+                  name = "Nhentai";
+                  keyword = "nh";
+                  url = "https://nhentai.net";
+                }
+                {
+                  name = "HentaiHaven";
+                  keyword = "hh";
+                  url = "https://hentaihaven.com";
+                }
+              ];
+            }
+            {
+              name = "mori";
+              toolbar = false;
+              bookmarks = [
+                {
+                  name = "Twitter";
+                  keyword = "tw";
+                  url = "https://twitter.com";
+                }
+                {
+                  name = "YouTube";
+                  keyword = "yo";
+                  url = "https://YouTube.com";
+                }
+                {
+                  name = "Whatsapp";
+                  keyword = "we";
+                  url = "https://web.whatsapp.com";
+                }
+                {
+                  name = "Instagram";
+                  keyword = "ig";
+                  url = "https://instagram.com";
+                }
+                {
+                  name = "Pixiv";
+                  keyword = "px";
+                  url = "https://pixiv.net";
+                }
+                {
+                  name = "Tiktok";
+                  keyword = "tt";
+                  url = "https://tiktok.com";
+                }
+                {
+                  name = "Pinterest";
+                  keyword = "pt";
+                  url = "https://pinterest.com";
+                }
+                {
+                  name = "MangaDex";
+                  keyword = "md";
+                  url = "https://mangadex.org";
+                }
+              ]; 
+            }
+          ];
+        }; 
+
+        search = {
+          default = "Brave";
+          force = true;
+          engines = {
+            "Brave" = {
+              urls = [{template = "https://search.brave.com/search?q={searchTerms}";}];
+              definedAliases = ["@b"];
+              icon = "https://brave.com/static-assets/images/brave-logo-sans-text.svg";
+            };
+            "GitHub" = {
+              urls = [{template = "https://github.com/search?q={searchTerms}&type=code";}];
+              definedAliases = ["@gh"];
+            };
+            "Nix Packages" = {
+              urls = [{template = "https://search.nixos.org/packages?channel=unstable&type=packages&query={searchTerms}";}];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["@np"];
+            };
+            "Nix Options" = {
+              urls = [{template = "https://search.nixos.org/options?channel=unstable&type=packages&query={searchTerms}";}];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = ["@no"];
+            };
+            "youtube" = {
+              icon = "https://youtube.com/favicon.ico";
+              updateInterval = 24 * 60 * 60 * 1000;
+              urls = [{template = "https://www.youtube.com/results?search_query={searchTerms}";}];
+              definedAliases = ["@yt"];
+            };
+            "Nhentai" = {
+              updateInterval = 24 * 60 * 60 * 1000;
+              urls = [{template = "https://www.nhentai.net/search?q={searchTerms}";}];
+              definedAliases = ["@nh"];
+            };
+            "HentaiHaven" = {
+              updateInterval = 24 * 60 * 60 * 1000;
+              urls = [{template = "https://www.hentaihaven.com/search?q={searchTerms}";}];
+              definedAliases = ["@hh"]; 
+            };
+            "google".metaData.alias = "g";
+          };
+        };
+        extraConfig = ''
+          ${builtins.readFile "${betterfox}/user.js"}
+          ${builtins.readFile "${betterfox}/Fastfox.js"}
+          ${builtins.readFile "${betterfox}/Peskyfox.js"}
+          ${builtins.readFile "${betterfox}/Smoothfox.js"}
+        '';
+      };
+    };
+  };
+}

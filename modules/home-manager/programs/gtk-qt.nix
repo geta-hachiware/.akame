@@ -1,0 +1,66 @@
+{
+  pkgs,
+  config,
+  gtkThemeFromScheme,
+  ...
+}: let
+  palette = config.colorScheme.palette;
+in {
+  gtk = let
+    extraConfig = {
+      #gtk-application-prefer-light = 0;
+    };
+  in {
+    enable = true;
+    font = {
+      name = "Lekton Nerd Font Mono";
+      size = 12;
+    };
+    /*
+    theme = {
+      name = "Catppuccin-Macchiato-Compact-Rosewater-Light";
+      package = pkgs.catppuccin-gtk.override {
+        accents = [ "rosewater" ];
+        tweaks = [
+          "rimless"
+          "normal"
+        ];
+        variant = "macchiato";
+        size = "compact";
+      };
+    };
+    */
+
+    theme = {
+      name = "${config.colorScheme.slug}";
+      package = gtkThemeFromScheme {scheme = config.colorScheme;};
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    gtk3 = {
+      inherit extraConfig;
+    };
+    gtk4 = {
+      inherit extraConfig;
+    };
+  };
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+      style = {
+      name = "adawaita";
+    };
+  };
+  home.pointerCursor = {
+    gtk.enable = true;
+    hyprcursor = {
+      enable = true;
+      size = 28;
+    };
+    package = pkgs.openzone-cursors;
+    name = "OpenZone_White_Slim";
+  };
+}

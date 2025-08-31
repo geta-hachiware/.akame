@@ -1,0 +1,21 @@
+{
+  imports = [
+    #./stylix.nix
+    ./firefox.nix
+    ./textfox.nix
+    ./nixcord.nix
+    ./games.nix
+    ./alacritty.nix
+    ./vscode.nix
+    ./xdg.nix
+    ./git.nix
+    ./gtk-qt.nix
+    ./kitty.nix
+    ./yazi.nix
+    ./nh.nix
+    ./spicetify.nix
+    ./btop.nix
+    ./cava.nix
+    ./obs-studio.nix
+  ];
+}
