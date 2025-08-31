@@ -14,6 +14,9 @@ else
 	wal -q -i "$WALLPAPER_PATH"
 fi
 
+echo "Reloading Wayland notification daemon..."
+swaync-client -rs
+
 echo "Reloading Waybar for new theme..."
 pkill waybar && waybar &
 
