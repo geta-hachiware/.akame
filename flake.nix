@@ -63,6 +63,9 @@
       theme = "black-metal-burzum";
 
       lib = nixpkgs.lib;
+      overlays = [
+        (import ./pkgs)
+      ];
       pkgs = import nixpkgs {
         inherit system overlays;
         config.allowUnfree = true;
@@ -71,9 +74,6 @@
         inherit system;
         config.allowUnfree = true;
       };
-      overlays = [
-        (import ./pkgs)
-      ];
     in {
     nixosConfigurations = {
       nixos = lib.nixosSystem {
